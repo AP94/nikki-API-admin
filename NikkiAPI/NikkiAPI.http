@@ -1,0 +1,21 @@
+@NikkiAPI_HostAddress = http://localhost:5208
+
+GET {{NikkiAPI_HostAddress}}/materials/
+Accept: application/json
+
+POST {{NikkiAPI_HostAddress}}/materials/
+Accept: application/json
+
+DELETE {{NikkiAPI_HostAddress}}/materials/*
+Accept: application/json
+
+GET {{NikkiAPI_HostAddress}}/sketches/
+Accept: application/json
+
+POST {{NikkiAPI_HostAddress}}/sketches/
+Accept: application/json
+
+DELETE {{NikkiAPI_HostAddress}}/sketches/*
+Accept: application/json
+
+###
