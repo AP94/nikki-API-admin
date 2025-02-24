@@ -2,6 +2,7 @@ using NikkiApi.Models;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
+using MongoDB.Bson;
 
 namespace NikkiApi.Services
 {
@@ -27,12 +28,16 @@ namespace NikkiApi.Services
             return materialSource;
         }
 
+        public List<MaterialSource> Create(List<MaterialSource> materialSources) {
+            _materialSources.InsertMany(materialSources);
+            return materialSources;
+        }
+
         public void Update(string id, MaterialSource updatedMaterialSource) => _materialSources.ReplaceOne(materialSource => materialSource.Id == id, updatedMaterialSource);
 
         public void Delete(MaterialSource materialSourceToDelete) => _materialSources.DeleteOne(materialSource => materialSource.Id == materialSourceToDelete.Id);
 
         public void Delete(string id) => _materialSources.DeleteOne(materialSource => materialSource.Id == id);
-
         
         public async Task<List<MaterialSource>> GetAsync() => await _materialSources.Find(materialSource => true).ToListAsync();
 

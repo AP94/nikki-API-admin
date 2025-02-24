@@ -27,6 +27,11 @@ namespace NikkiApi.Services
             return sketch;
         }
 
+        public List<Sketch> Create(List<Sketch> sketches) {
+            _sketches.InsertMany(sketches);
+            return sketches;
+        }
+
         public void Update(string id, Sketch updatedSketch) => _sketches.ReplaceOne(sketch => sketch.Id == id, updatedSketch);
 
         public void Delete(Sketch sketchToDelete) => _sketches.DeleteOne(sketch => sketch.Id == sketchToDelete.Id);

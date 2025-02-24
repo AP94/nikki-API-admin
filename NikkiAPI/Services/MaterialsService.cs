@@ -26,6 +26,11 @@ namespace NikkiApi.Services
             _materials.InsertOne(material);
             return material;
         }
+        
+        public List<Material> Create(List<Material> materials) {
+            _materials.InsertMany(materials);
+            return materials;
+        }
 
         public void Update(string id, Material updatedMaterial) => _materials.ReplaceOne(material => material.Id == id, updatedMaterial);
 

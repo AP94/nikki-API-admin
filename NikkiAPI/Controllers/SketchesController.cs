@@ -33,12 +33,20 @@ namespace NikkiApi.Controllers
             return sketch;
         }
 
-        [HttpPost]
-        public ActionResult<Sketch> Create(Sketch sketch)
-        {
-            _sketchesService.Create(sketch);
+        // [HttpPost]
+        // public ActionResult<Sketch> Create(Sketch sketch)
+        // {
+        //     _sketchesService.Create(sketch);
 
-            return CreatedAtRoute("GetSketch", new { id = sketch.Id.ToString() }, sketch);
+        //     return CreatedAtRoute("GetSketch", new { id = sketch.Id.ToString() }, sketch);
+        // }
+
+        [HttpPost]
+        public ActionResult<List<Sketch>> Create(List<Sketch> sketches)
+        {
+            _sketchesService.Create(sketches);
+
+            return Created();
         }
 
         [HttpPut("{id:length(24)}")]
@@ -51,7 +59,15 @@ namespace NikkiApi.Controllers
                 return NotFound();
             }
 
-            _sketchesService.Update(id, sketchToUpdate);
+            sketch.Name = sketchToUpdate.Name;
+            sketch.Quality = sketchToUpdate.Quality;
+            sketch.ThreadCost = sketchToUpdate.ThreadCost;
+            sketch.BlingsCost = sketchToUpdate.BlingsCost;
+            sketch.SketchSource = sketchToUpdate.SketchSource;
+            sketch.SketchCategory = sketchToUpdate.SketchCategory;
+            sketch.MaterialsCost = sketchToUpdate.MaterialsCost;
+
+            _sketchesService.Update(id, sketch);
 
             return NoContent();
         }

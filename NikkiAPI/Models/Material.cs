@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using System.Text.Json.Serialization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -6,7 +7,6 @@ namespace NikkiApi.Models
 {
     public class Material
     {
-        [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; } = null!;
 
@@ -14,8 +14,6 @@ namespace NikkiApi.Models
         [JsonPropertyName("Name")]
         public string Name { get; set; } = null!;
 
-        [BsonElement("Type")]
-        [JsonPropertyName("Type")]
         public MaterialType MaterialType { get; set; } = 0!;
 
         public int Quality { get; set; } = 0!;
@@ -23,8 +21,13 @@ namespace NikkiApi.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string SourceId { get; set; } = null!;
         
-        public bool IsEssence { get; set; } = false!;
-        public BedrockCrystalType CrystalType { get; set; } = 0!;
+        public bool? IsEssence { get; set; } = false!;
+        
+        public BedrockCrystalType? CrystalType { get; set; } = 0!;
+
+        public Material() {
+            Id = RandomNumberGenerator.GetHexString(24);
+        }
     }
 
     public enum MaterialType {
@@ -35,10 +38,10 @@ namespace NikkiApi.Models
 
     public enum BedrockCrystalType {
         None,
-        Command,
         Energy,
-        Hurt,
+        Hurl,
         Plummet,
-        Tumble
+        Tumble,
+        Command
     }
 }

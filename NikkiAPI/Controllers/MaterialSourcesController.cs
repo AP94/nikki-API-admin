@@ -32,12 +32,20 @@ namespace NikkiApi.Controllers
             return materialSource;
         }
 
-        [HttpPost]
-        public ActionResult<MaterialSource> Create(MaterialSource materialSource)
-        {
-            _materialSourcesService.Create(materialSource);
+        // [HttpPost]
+        // public ActionResult<MaterialSource> Create(MaterialSource materialSource)
+        // {
+        //     _materialSourcesService.Create(materialSource);
 
-            return CreatedAtRoute("GetMaterial", new { id = materialSource.Id.ToString() }, materialSource);
+        //     return CreatedAtRoute("GetMaterialSource", new { id = materialSource.Id }, materialSource);
+        // }
+        
+        [HttpPost]
+        public ActionResult<List<MaterialSource>> Create(List<MaterialSource> materialSources)
+        {
+            _materialSourcesService.Create(materialSources);
+
+            return Created();
         }
 
         [HttpPut("{id:length(24)}")]
@@ -50,7 +58,12 @@ namespace NikkiApi.Controllers
                 return NotFound();
             }
 
-            _materialSourcesService.Update(id, materialSourceToUpdate);
+            materialSource.Name = materialSourceToUpdate.Name;
+            materialSource.Regions = materialSourceToUpdate.Regions;
+            materialSource.Locations = materialSourceToUpdate.Locations;
+            materialSource.HarvestedBy = materialSourceToUpdate.HarvestedBy;
+
+            _materialSourcesService.Update(id, materialSource);
 
             return NoContent();
         }
