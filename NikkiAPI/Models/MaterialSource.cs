@@ -33,6 +33,11 @@ namespace NikkiApi.Models
         Combat
     }
 
+    public enum Region {
+        None,
+        Wishfield
+    }
+
     public enum Location {
         None,
         Quest,
@@ -45,10 +50,5 @@ namespace NikkiApi.Models
         WishingWoods,
         MemorialMountains,
         FireworkIsles
-    }
-
-    public enum Region {
-        None,
-        Wishfield
     }
 }

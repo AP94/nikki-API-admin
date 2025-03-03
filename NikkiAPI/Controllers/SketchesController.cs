@@ -50,7 +50,7 @@ namespace NikkiApi.Controllers
         }
 
         [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, Sketch sketchToUpdate)
+        public ActionResult<Sketch> Update(string id, Sketch sketchToUpdate)
         {
             var sketch = _sketchesService.Get(id);
 
@@ -66,10 +66,15 @@ namespace NikkiApi.Controllers
             sketch.SketchSource = sketchToUpdate.SketchSource;
             sketch.SketchCategory = sketchToUpdate.SketchCategory;
             sketch.MaterialsCost = sketchToUpdate.MaterialsCost;
-
+            sketch.WardrobeCategory = sketchToUpdate.WardrobeCategory;
+            sketch.ClothingStyle = sketchToUpdate.ClothingStyle;
+            sketch.Labels = sketchToUpdate.Labels;
+            sketch.OutfitSet = sketchToUpdate.OutfitSet;
+            sketch.FragranceType = sketchToUpdate.FragranceType;
+            
             _sketchesService.Update(id, sketch);
 
-            return NoContent();
+            return sketch;
         }
 
         [HttpDelete("{id:length(24)}")]

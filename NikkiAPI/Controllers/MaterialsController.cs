@@ -49,7 +49,7 @@ namespace NikkiApi.Controllers
         }
 
         [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, Material materialToUpdate)
+        public ActionResult<Material> Update(string id, Material materialToUpdate)
         {
             var material = _materialsService.Get(id);
 
@@ -67,7 +67,7 @@ namespace NikkiApi.Controllers
 
             _materialsService.Update(id, material);
 
-            return NoContent();
+            return material;
         }
 
         [HttpDelete("{id:length(24)}")]

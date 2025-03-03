@@ -58,10 +58,10 @@ namespace NikkiApi.Models
 
     public enum ClothingStyle {
         Elegant,
-        Sweet,
-        Cool,
         Fresh,
-        Sexy
+        Sweet,
+        Sexy,
+        Cool
     }
 
     public enum Label {
