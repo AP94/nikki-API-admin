@@ -19,6 +19,7 @@ To build this project, nagivate to the NikkiAPI folder and run `dotnet run` in t
 | GET | /api/materials/{id} | JSON object |
 | GET | /api/materialsources | List of JSON objects |
 | GET | /api/materialsources/{id} | JSON object |
+
 Check the Data Structures section for the structure of the JSON objects returned.
 
 ## Private
